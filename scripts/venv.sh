@@ -14,4 +14,4 @@ source $VENV/bin/activate
 cd $ROOT/src/
 export PYTHONPATH=.
 
-exec python $@
+exec $@
