@@ -24,4 +24,13 @@ class GetUploadTo(object):
 
 
 def file_to_dict(f):
-    return {'id': f.id, 'name': f.name, 'size': f.size, 'hash': f.hash, 'created': f.created}
+    return {'id': f.id, 'name': f.name, 'size': sizeof_fmt(f.size), 'hash': f.hash,
+            'created': f.created.strftime('%d.%m.%Y %H:%M:%S')}
+
+
+def sizeof_fmt(num, suffix='B'):
+    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, 'Yi', suffix)
